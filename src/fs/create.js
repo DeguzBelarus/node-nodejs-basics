@@ -14,6 +14,7 @@ const create = async () => {
   const textContent = 'I am fresh and young';
   const fileName = 'fresh.txt';
   const filePath = path.join(__dirname, fileName)
+
   fs.writeFile(filePath, textContent, (error) => {
     if (error) {
       console.error(error.message);
