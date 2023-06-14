@@ -8,6 +8,7 @@ import {
   createReadStream,
   createWriteStream,
   access,
+  unlink,
 } from 'fs';
 import path, {
   dirname
@@ -25,6 +26,18 @@ const compress = async () => {
   const fileToZipPath = path.join(__dirname, 'files', 'fileToCompress.txt');
   const zippedFilePath = path.join(__dirname, 'files', 'archive.gz');
 
+  access(zippedFilePath, (error) => {
+    if (!error) {
+      unlink(zippedFilePath, (error) => {
+        if (error) {
+          console.error(error);
+        } else {
+          console.log('The archive.gz file was removed');
+        }
+      })
+    }
+  })
+
   access(fileToZipPath, (error) => {
     if (error) {
       throw new Error("The fileToCompress.txt file was not found");
@@ -36,11 +49,12 @@ const compress = async () => {
         if (error) {
           console.error(error);
           process.exit(1);
+        } else {
+          console.log('The fileToCompress.txt file was successfully compressed');
         }
       });
     }
   })
-
 };
 
 await compress();
