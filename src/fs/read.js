@@ -21,7 +21,7 @@ const read = async () => {
         encoding: 'utf-8'
       }, (error, data) => {
         if (error) {
-          console.error(error.message);
+          console.error(error);
         }
         if (data) {
           console.log(data);

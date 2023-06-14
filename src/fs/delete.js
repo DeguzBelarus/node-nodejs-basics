@@ -19,7 +19,7 @@ const remove = async () => {
     } else {
       fs.unlink(fileToDeletePath, (error) => {
         if (error) {
-          console.error(error.message);
+          console.error(error);
         } else {
           console.log('The fileToRemove.txt file was successfully removed!');
         }

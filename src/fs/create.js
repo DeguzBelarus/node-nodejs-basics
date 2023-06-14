@@ -17,7 +17,7 @@ const create = async () => {
 
   fs.writeFile(filePath, textContent, (error) => {
     if (error) {
-      console.error(error.message);
+      console.error(error);
     }
     console.log(`The ${fileName} file was successfully created and updated!`);
   });

@@ -24,7 +24,7 @@ const rename = async () => {
         } else {
           fs.rename(wrongFilepath, properFilepath, (error) => {
             if (error) {
-              console.error(error.message);
+              console.error(error);
             } else {
               console.log('The wrongFilename.txt was successfully renamed to properFilename.txt!');
             }

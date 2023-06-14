@@ -43,7 +43,7 @@ const copy = async () => {
                   console.log(`Copying the ${file.name} file...`);
                   fs.copyFile(path.join(filesDirPath, file.name), path.join(filesCopyDirPath, file.name), (error) => {
                     if (error) {
-                      console.error(error.message);
+                      console.error(error);
                     }
                   })
                 }

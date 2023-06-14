@@ -21,7 +21,7 @@ const calculateHash = async () => {
     } else {
       fs.readFile(fileToEncryptPath, (error, data) => {
         if (error) {
-          console.error(error.message);
+          console.error(error);
         }
         if (data) {
           const hashSum = crypto.createHash(algorithm);
