@@ -9,14 +9,14 @@ import {
   readdir
 } from "fs/promises";
 
-const __filename = fileURLToPath(
-  import.meta.url);
-const __dirname = dirname(__filename);
-
-const filesDirPath = path.join(__dirname, 'files');
-const filesCopyDirPath = path.join(__dirname, 'files_copy');
-
 const copy = async () => {
+  const __filename = fileURLToPath(
+    import.meta.url);
+  const __dirname = dirname(__filename);
+
+  const filesDirPath = path.join(__dirname, 'files');
+  const filesCopyDirPath = path.join(__dirname, 'files_copy');
+
   fs.access(filesDirPath, error => {
     if (error) {
       throw new Error('FS operation failed ');
