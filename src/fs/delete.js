@@ -1,5 +1,31 @@
+import fs from 'fs';
+import path, {
+  dirname
+} from 'path';
+import {
+  fileURLToPath
+} from 'url';
+
 const remove = async () => {
-    // Write your code here 
+  const __filename = fileURLToPath(
+    import.meta.url);
+  const __dirname = dirname(__filename);
+
+  const fileToDeletePath = path.join(__dirname, 'files', 'fileToRemove.txt');
+
+  fs.access(fileToDeletePath, (error) => {
+    if (error) {
+      throw new Error('FS operation failed');
+    } else {
+      fs.unlink(fileToDeletePath, (error) => {
+        if (error) {
+          console.error(error.message);
+        } else {
+          console.log('The fileToRemove.txt file was successfully removed!');
+        }
+      })
+    }
+  })
 };
 
 await remove();
