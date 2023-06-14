@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import path, { dirname } from 'node:path';
+import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
