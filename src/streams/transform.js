@@ -10,7 +10,6 @@ const transform = async () => {
   const transformStream = new Transform({
     transform(chunk, encoding, callback) {
       chunk.toString().trim() === 'exit' && process.exit(0);
-      console.log('Enter your text (or type "exit"): ');
       this.push(chunk.toString().trim().split('').reverse().join('') + '\n');
       callback();
     },
