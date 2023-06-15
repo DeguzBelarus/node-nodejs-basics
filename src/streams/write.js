@@ -17,7 +17,7 @@ const write = async () => {
     import.meta.url);
   const __dirname = dirname(__filename);
 
-  const fileToWritePath = join(__dirname, 'files', 'fileToWrite.txt')
+  const fileToWritePath = join(__dirname, 'files', 'fileToWrite.txt');
   const writeStream = new WriteStream(fileToWritePath);
   openReadLine(true);
 
