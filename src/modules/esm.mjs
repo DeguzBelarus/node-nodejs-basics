@@ -17,9 +17,9 @@ import './files/c.js';
 const __filename = fileURLToPath(
   import.meta.url);
 const __dirname = dirname(__filename);
-const random = Math.random();
 
 const PORT = 3000;
+const random = Math.random();
 let unknownObject;
 
 const unknownObjectValueHandler = async (randomValue) => {
