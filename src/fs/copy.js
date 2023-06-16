@@ -1,5 +1,6 @@
-import fs from 'fs';
-import path, {
+import { access, mkdir, copyFile } from 'fs';
+import {
+  join,
   dirname
 } from 'path';
 import {
@@ -14,18 +15,18 @@ const copy = async () => {
     import.meta.url);
   const __dirname = dirname(__filename);
 
-  const filesDirPath = path.join(__dirname, 'files');
-  const filesCopyDirPath = path.join(__dirname, 'files_copy');
+  const filesDirPath = join(__dirname, 'files');
+  const filesCopyDirPath = join(__dirname, 'files_copy');
 
-  fs.access(filesDirPath, (error) => {
+  access(filesDirPath, (error) => {
     if (error) {
       throw new Error('FS operation failed');
     } else {
-      fs.access(filesCopyDirPath, (error) => {
+      access(filesCopyDirPath, (error) => {
         if (!error) {
           throw new Error('FS operation failed');
         } else {
-          fs.mkdir(filesCopyDirPath, {
+          mkdir(filesCopyDirPath, {
             recursive: true
           }, async (error) => {
             console.log("Creating a folder files_copy...");
@@ -41,7 +42,7 @@ const copy = async () => {
               if (files.length) {
                 for (const file of files) {
                   console.log(`Copying the ${file.name} file...`);
-                  fs.copyFile(path.join(filesDirPath, file.name), path.join(filesCopyDirPath, file.name), (error) => {
+                  copyFile(join(filesDirPath, file.name), join(filesCopyDirPath, file.name), (error) => {
                     if (error) {
                       console.error(error);
                     }

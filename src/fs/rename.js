@@ -1,5 +1,8 @@
-import fs from 'fs';
-import path, {
+import fs, {
+  access,
+} from 'fs';
+import {
+  join,
   dirname
 } from 'path';
 import {
@@ -11,14 +14,14 @@ const rename = async () => {
     import.meta.url);
   const __dirname = dirname(__filename);
 
-  const wrongFilepath = path.join(__dirname, 'files', 'wrongFilename.txt');
-  const properFilepath = path.join(__dirname, 'files', 'properFilename.txt');
+  const wrongFilepath = join(__dirname, 'files', 'wrongFilename.txt');
+  const properFilepath = join(__dirname, 'files', 'properFilename.txt');
 
-  fs.access(wrongFilepath, (error) => {
+  access(wrongFilepath, (error) => {
     if (error) {
       throw new Error('FS operation failed');
     } else {
-      fs.access(properFilepath, (error) => {
+      access(properFilepath, (error) => {
         if (!error) {
           throw new Error('FS operation failed');
         } else {

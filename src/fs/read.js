@@ -1,5 +1,9 @@
-import fs from 'fs';
-import path, {
+import {
+  readFile,
+  access
+} from 'fs';
+import {
+  join,
   dirname
 } from 'path';
 import {
@@ -11,13 +15,13 @@ const read = async () => {
     import.meta.url);
   const __dirname = dirname(__filename);
 
-  const fileToReadPath = path.join(__dirname, 'files', 'fileToRead.txt');
+  const fileToReadPath = join(__dirname, 'files', 'fileToRead.txt');
 
-  fs.access(fileToReadPath, (error) => {
+  access(fileToReadPath, (error) => {
     if (error) {
       throw new Error('FS operation failed');
     } else {
-      fs.readFile(fileToReadPath, {
+      readFile(fileToReadPath, {
         encoding: 'utf-8'
       }, (error, data) => {
         if (error) {

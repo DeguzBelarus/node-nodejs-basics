@@ -1,5 +1,8 @@
-import fs from 'fs';
-import path, {
+import {
+  access
+} from 'fs';
+import {
+  join,
   dirname
 } from 'path';
 import {
@@ -14,9 +17,9 @@ const list = async () => {
     import.meta.url);
   const __dirname = dirname(__filename);
 
-  const filesDirPath = path.join(__dirname, 'files');
+  const filesDirPath = join(__dirname, 'files');
 
-  fs.access(filesDirPath, async (error) => {
+  access(filesDirPath, async (error) => {
     if (error) {
       throw new Error('FS operation failed');
     } else {
@@ -25,7 +28,7 @@ const list = async () => {
       });
 
       if (files.length) {
-        console.log(files.map((file) => file.name));
+        console.log('The files folder content: ', files.map((file) => file.name));
       } else {
         console.log('The files folder is empty');
       }

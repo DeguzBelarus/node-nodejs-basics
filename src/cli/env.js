@@ -11,7 +11,7 @@ const parseEnv = () => {
     }
     console.log(result);
   } else {
-    console.log('there are no environment variables')
+    console.log('there are no environment variables given')
   }
 };
 

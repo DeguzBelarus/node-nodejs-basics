@@ -1,4 +1,7 @@
-import fs from 'fs';
+import {
+  access,
+  unlink
+} from 'fs';
 import path, {
   dirname
 } from 'path';
@@ -13,11 +16,11 @@ const remove = async () => {
 
   const fileToDeletePath = path.join(__dirname, 'files', 'fileToRemove.txt');
 
-  fs.access(fileToDeletePath, (error) => {
+  access(fileToDeletePath, (error) => {
     if (error) {
       throw new Error('FS operation failed');
     } else {
-      fs.unlink(fileToDeletePath, (error) => {
+      unlink(fileToDeletePath, (error) => {
         if (error) {
           console.error(error);
         } else {

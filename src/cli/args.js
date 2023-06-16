@@ -9,7 +9,7 @@ const parseArgs = () => {
     }
     console.log(result);
   } else {
-    console.log('there are no arguments')
+    console.log('there are no arguments given')
   }
 };
 

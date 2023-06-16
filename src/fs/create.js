@@ -1,4 +1,7 @@
-import fs from 'fs';
+import {
+  writeFile,
+  access
+} from 'fs';
 import path, {
   dirname
 } from 'path';
@@ -13,13 +16,19 @@ const create = async () => {
 
   const textContent = 'I am fresh and young';
   const fileName = 'fresh.txt';
-  const filePath = path.join(__dirname, fileName)
+  const filePath = path.join(__dirname, 'files', fileName)
 
-  fs.writeFile(filePath, textContent, (error) => {
-    if (error) {
-      console.error(error);
+  access(filePath, (error) => {
+    if (!error) {
+      throw new Error('FS operation failed');
+    } else {
+      writeFile(filePath, textContent, (error) => {
+        if (error) {
+          console.error(error);
+        }
+        console.log(`The ${fileName} file was successfully created and updated!`);
+      });
     }
-    console.log(`The ${fileName} file was successfully created and updated!`);
   });
 };
 

@@ -8,7 +8,7 @@ const transform = async () => {
   const writeableStream = process.stdout;
 
   const transformStream = new Transform({
-    transform(chunk, encoding, callback) {
+    transform(chunk, _, callback) {
       chunk.toString().trim() === 'exit' && process.exit(0);
       this.push(chunk.toString().trim().split('').reverse().join('') + '\n');
       callback();
@@ -18,6 +18,7 @@ const transform = async () => {
   console.log('Enter your text (or type "exit"): ');
   pipeline(readableStream, transformStream, writeableStream, (error) => {
     console.error(error);
+    process.exit(1);
   })
 };
 
